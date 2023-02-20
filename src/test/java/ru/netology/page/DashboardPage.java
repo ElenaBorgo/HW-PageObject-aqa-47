@@ -5,8 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import lombok.val;
 import ru.netology.data.DataHelper;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -26,7 +25,7 @@ public class DashboardPage {
     }
 
     public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
-        cards.findBy(text(cardInfo.getCardNumber().substring(15))).$("button");
+        cards.findBy(attribute("data-test-id", cardInfo.getTestId())).$("button").click();
         return new TransferPage();
     }
 
